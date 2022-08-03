@@ -1,0 +1,56 @@
+### skt_sandbox_KSBjNobS.NVVAZ8qNR2xsNWfI0IrZBoueMRW9nSoj
+### Create token
+POST https://sandbox.api.holacash.mx/v2/tokenization/payment_token
+Content-Type: application/json
+X-Api-Client-Key: pub_sandbox_mjRUaBKr.ZOpcQYBqKn4m0oTstDRQNpfmSr2CdHF4
+X-Cash-Anti-Fraud-Metadata: ewogICAgImlwX2FkZHJlc3MiOiAiMTkyLjE2OC4wLjEwMCIsCiAgICAiZGV2aWNlX2lkIjogInNvbWVkZXZpY2VfMTIzNDUyIiwKICAgICJ1c2VyX3RpbWV6b25lIjogIi0wNjowMCIKfQ==
+
+{
+    "credential": {
+        "payment_method": {
+            "method": "credit_or_debit_card"
+        },
+        "credit_or_debit_card": {
+            "card_number": "4242424242424242",
+            "expiration_month": "12",
+            "expiration_year": "2034",
+            "card_validation_code": "123"
+        }
+    },
+    "consumer_details": {
+        "contact": {
+            "email": "abc@abc.com"
+        },
+        "name": {
+            "first_name": "Test",
+            "first_last_name": "Cash"
+        }
+    }
+}
+
+### Create charge
+POST https://sandbox.api.holacash.mx/v2/transaction/charge
+Content-Type: application/json
+X-Api-Client-Key: pub_sandbox_mjRUaBKr.ZOpcQYBqKn4m0oTstDRQNpfmSr2CdHF4
+X-Cash-Anti-Fraud-Metadata: ewogICAgImlwX2FkZHJlc3MiOiAiMTkyLjE2OC4wLjEwMCIsCiAgICAiZGV2aWNlX2lkIjogInNvbWVkZXZpY2VfMTIzNDUyIiwKICAgICJ1c2VyX3RpbWV6b25lIjogIi0wNjowMCIKfQ==
+
+{
+    "amount_details":{
+        "amount":100,
+        "currency_code":"MXN"
+    },
+    "description":"This is a test description",
+    "payment_detail":{
+        "credentials":{
+            "payment_method":{
+                "method":"pay_with_holacash_payment_token"
+            },
+            "holacash_payment_token":{
+                "payment_token":"7ffb61ba-ba05-4da6-998e-167f9bfe83b0"
+            }
+        }
+    },
+    "processing_instructions":{
+        "auto_capture":true
+    }
+}
